@@ -1,0 +1,23 @@
+{
+  "name": "poc",
+  "version": "1.0.0",
+  "description": "hello world Lambda in nodejs",
+  "main": "src/index.js",
+  "author": "Kurt Schroeder",
+  "liwacense": "MIT",
+  "scripts": {
+    "build": "esbuild src/index.js --bundle --sourcemap --platform=node --outfile=dist/index.js",
+    "watch": "./watch.js",
+    "dev": "npm run build && docker build -t js-lambda . && docker run -t -p 9000:8080  -p 9229:9229  --env NODE_OPTIONS='--inspect=0.0.0.0'  --env RANDOM=${date}  --name lambda  --mount type=bind,source=$(pwd)/dist,target=/var/task  --rm js-lambda",
+    "kill": "docker kill lambda"
+  },
+  "dependencies": {
+    "@aws-sdk/client-s3": "^3.32.0",
+    "log4js": "^6.6.1",
+    "mongodb": "^4.9.0",
+    "underscore": "^1.13.4"
+  },
+  "devDependencies": {
+    "esbuild": "^0.15.5"
+  }
+}
