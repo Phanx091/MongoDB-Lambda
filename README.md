@@ -17,6 +17,15 @@ docker build -t js-lambda . (In a different terminal)
 ./send_lambda_event.sh (In a different terminal) 
 ```
 
+## Requirement
+
+You'll need to add your credentials for AdministratorAcess via AWS in your terminal
+
+```
+export AWS_ACCESS_KEY_ID=""
+AWS_SECRET_ACCESS_KEY=""
+AWS_SESSION_TOKEN=""
+```
 
 ## Test
 

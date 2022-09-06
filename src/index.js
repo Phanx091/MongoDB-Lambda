@@ -14,15 +14,16 @@ log4js.configure({
 });
 const logger = log4js.getLogger();
 
-// Connection URL
-const url =   'mongodb://apmg-dw-portal:gIM5jwMNuhsbg2v9@springboard-datawarehouse-1-shard-00-00-zu4mc.mongodb.net:27017,springboard-datawarehouse-1-shard-00-01-zu4mc.mongodb.net:27017,springboard-datawarehouse-1-shard-00-02-zu4mc.mongodb.net:27017/admin?tls=true'
+// Connection URL via MongoDB
+const url =   ''
 const client = new MongoClient(url);
 
 // Database Name
-const dbName = 'mpr';
+const dbName = '';
 
 exports.handler = async function(event, context, callback) {
   // Use connect method to connect to the server
+  // find by email - line 35 add email
     let findResults;
     try {
         await client.connect();
@@ -31,7 +32,7 @@ exports.handler = async function(event, context, callback) {
         const collection = db.collection('sb_donation');
         findResults = await collection
             .find({
-                'email': 'sheriden.smith@marketplace.org',
+                'email': '',
                 'parent_id': { '$ne': '' },
                 'do_not_import_enterprise': { '$ne': 1 },
                 'form_internal_name': { '$not': { '$regex': new RegExp('sustchange'), '$options': 'i' }},
